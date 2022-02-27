@@ -1,0 +1,75 @@
+Hi all!
+
+Thanks for shortliating me for this written interview. The answers to the asked questions are below.
+
+
+1 . in high school or university, what did you achieve that you consider exceptional?
+
+ My university was not a good one. To be more precise students were more interested in art than tech even those studying engineering.
+I founded the coding club of our university and went on to host a global coding competition which had participants from over 10 countries.
+This was the first competition of its kind in my university. I also mentored juniors and even now sometimes go back to college to talk 
+on tech.
+
+2. what makes for an ideal devops engineering colleague?
+
+I have good experince with kubernetes and docker during my time at Redhat as a software engineer. But to be homest I am a junior engineer with 
+only 1YOE I am looking to learn and grow as well.
+
+3.what are the key trends in infra-as-code?
+ans:
+kubernetes
+
+git-ops
+
+vulnebrality analysis
+
+4. what could be improved in the state of the art of devops?
+
+better telemetry and logging
+
+5. how familiar are you with Linux operations - including networking and storage - and how did you gain this experience?
+
+Not very familiar.
+I have understanding of docker networking storage but not very familiar with linux networking.
+
+
+6. describe your Python software engineering skill, and how did you gain this experience?
+
+I have developed core customer facing highly scalable apis in python during my time at redhat.
+i also owned the api-server for my team at Redhat.
+
+
+7.why does this particular opportunity interest you?
+
+I feel this will be a good opportunity for me to learn and grow as an engineer. One of the most important things for growth is culture and i have heard good things about canonical.
+
+
+8.how are you involved in open source software?
+
+I have contibuted to major projects like Quay, clair, cliarcore , CRDA.
+
+https://github.com/rafiu007
+
+
+9.how do you think Canonical could improve Ubuntu and its cloud offerings?
+
+I have used ubuntu but that was some timer ago.
+I always wanted the gnome desktop but that already happened so cant add anything here.
+
+I do not have enough knowledge about your cloud offering to comment on how you would improve it.
+
+10.what do you think are the most significant strengths of Canonical's competitors?
+
+I feel REdhat openshift and VM Tanzu are the competitors that will be bit hard to overcome since they have been in the industry for a much longer time.
+
+
+11 what about your personality and interests makes you a great potential member of this team?
+
+I am always eager to learn and explore. New things excite me. I have mentored 3 interns during my time at redhat and all of them got converted to full time employees.
+I am lucky to say most of my colleagues think of me as friend and not just a professional partner.
+
+
+12.what about Canonical interests you the most?
+
+Most importantly the work culture.
+opensource tech.
