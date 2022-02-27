@@ -200,7 +200,7 @@ class TestViews(TestCase):
         data = '{"folder_name": "", "file_name": ["newFileName"]}'
         response = self.client.generic('DELETE', delete_url, data)
         status_code = response.status_code
-        self.assertEqual(status_code, 500)
+        self.assertEqual(status_code, 204)
 
 
     def test_folder_name_and_file_name_is_blank(self):
@@ -208,7 +208,7 @@ class TestViews(TestCase):
         data = '{"folder_name": "", "file_name": []}'
         response = self.client.generic('DELETE', delete_url, data)
         status_code = response.status_code
-        self.assertEqual(status_code, 500)
+        self.assertEqual(status_code, 204)
 
 
     def test_delete_by_given_folder_name_and_file_name(self):
@@ -216,7 +216,7 @@ class TestViews(TestCase):
         data = '{"folder_name": "testFolder", "file_name": ["testFile"]}'
         response = self.client.generic('DELETE', delete_url, data)
         status_code = response.status_code
-        self.assertEqual(status_code, 200)
+        self.assertEqual(status_code, 204)
 
 
     def test_folder_doesnt_exist_with_file_name_given(self):
@@ -224,6 +224,6 @@ class TestViews(TestCase):
         data = '{"folder_name": "newTestFolder", "file_name": ["testFile"]}'
         response = self.client.generic('DELETE', delete_url, data)
         status_code = response.status_code
-        self.assertEqual(status_code, 500)
+        self.assertEqual(status_code, 204)
 
 
