@@ -7,6 +7,8 @@ from rest_framework.decorators import api_view
 from .serializers import *
 import json
 import logging
+from django.db.models import Q
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -62,21 +64,7 @@ def handle_file_upload(request):
     content = {'Msg': 'The file has been inserted'}
     return Response(content, status=status.HTTP_200_OK)
         
-    # else : 
-        # folder_name='test'
-
-        # # get files by folder name 
-        # files_all=FileUpload.objects.filter(file_name='sql_help.txt')
-        # json_obj=FileSerializers(files_all,many=True) 
-
-        # # get folders by file name
-        # folder_all = Folder.objects.filter(file__file_name__iexact='sql_help.txt')
-        # json_folder=FolderSerializers(folder_all,many=True)
-
-        # topic_all=Topics.objects.all()
-        # json_topics=TypesSerializers(topic_all,many=True)
-        # return Response({},status=status.HTTP_200_OK)
-
+        
 @api_view(['POST'])
 @csrf_exempt
 def file_search_handle(request): 
@@ -85,7 +73,7 @@ def file_search_handle(request):
     folder_name=body.get("folder_name")
     document_topics=body.get("topic")
     file_names=body.get("file_name")
-        
+         
     final_response=[]
     topic_id=[]
 
@@ -164,14 +152,19 @@ def delete(request):
     folder_name=body.get("folder_name") 
     file_names=body.get("file_name")
 
+    
+
     if folder_name!="" and len(file_names)==0:
         try:
             folder_qury_set=Folder.objects.filter(folder_name__iexact=folder_name)
-            if folder_qury_set is not None:  
+            if folder_qury_set.exists():  
                 folder_qury_set.delete()  
                 return Response({"msg":"folder removed successfully"},status=status.HTTP_200_OK)
+            else: 
+                return Response({"msg":"such folder doest not exist."},status=status.HTTP_204_NO_CONTENT)
+
         except:
-            return Response({"msg":"such folder doest not exist."},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"msg":"such folder doest not exist."},status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -188,14 +181,14 @@ def delete(request):
             except:
                 continue
         if len(success_file_names)==0:
-            return Response({"msg":"such folder doest not exist."},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({"msg":"such folder doest not exist."},status=status.HTTP_204_NO_CONTENT)
         else:
             return Response({"deleted_files":success_file_names,"msg":"files delete successfully.x"},status=status.HTTP_200_OK)
 
 
 
     elif folder_name=="" and len(file_names)==0:
-        return Response({"msg":"no body found."},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({"msg":"no body found."},status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -214,16 +207,25 @@ def delete(request):
                             # chcek this file is related with other folder if not delet it otherwise unlink it from current floder
                             folder_find_status=Folder.objects.filter(file__file_name__iexact=file).filter(~Q(folder_name__iexact=folder_name)).exists() 
                             if folder_find_status is False:
+                                print("no link with others one")
                                 # no link with other folder delete successfully
                                 FileUpload.objects.filter(file_name__iexact=file).delete() 
+                            else:
+                                # delete the linkning of file from the folder
+                                print("link with others one")
+                                fileobjtest=FileUpload.objects.get(file_name__iexact = file)
+                                folder=Folder.objects.get(folder_name__iexact=folder_name)
+                                folder.file.remove(fileobjtest)
+
                             success_file_names.append(file)
                     except:
-                        pass 
-                folder_qury_set.delete()
+                        pass  
                 # return the file name which cann be sucessfully deleted
-                return Response({"deleted_files":success_file_names,"msg":"folder and files delete successfully."},status=status.HTTP_200_OK)
+                if(len(success_file_names)>0):
+                    return Response({"deleted_files":success_file_names,"msg":"files are deleted successfully."},status=status.HTTP_200_OK)
+                else :
+                    return Response({"msg":"such folder/files doest not exist."},status=status.HTTP_204_NO_CONTENT)
             else:
-                return Response({"msg":"such folder doest not exist."},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        except:
-            print("hii")
-            return Response({"msg":"such folder/files doest not exist."},status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+                return Response({"msg":"such folder doest not exist."},status=status.HTTP_204_NO_CONTENT)
+        except: 
+            return Response({"msg":"such folder/files doest not exist."},status=status.HTTP_204_NO_CONTENT)
