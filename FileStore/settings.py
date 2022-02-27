@@ -79,18 +79,6 @@ WSGI_APPLICATION = 'FileStore.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-#postgres://wupvtyqjyjjwcf:8051c22f7666a4f18b98d84026fe2e5f38fab7a1b1a746249c22da6f3095c9a3@ec2-3-227-154-49.compute-1.amazonaws.com:5432/dcnbpkbsdt96m0
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'dcnbpkbsdt96m0',
-#         'HOST':'ec2-3-227-154-49.compute-1.amazonaws.com',
-#         'PORT':5432,
-#         'USER':'wupvtyqjyjjwcf',
-#         'PASSWORD':'8051c22f7666a4f18b98d84026fe2e5f38fab7a1b1a746249c22da6f3095c9a3'
-#     }
-# }
 
 DATABASES = {
     'default': {
