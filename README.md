@@ -71,3 +71,8 @@ curl --location --request DELETE 'https://docu-store-rafiu.herokuapp.com/file/de
     "msg": "folder removed successfully"
 }
 ```
+# data in the db is as such.
+
+folders , a1,a2,a3
+topic : war,love
+document: code.cpp, muta.jpg, readme, requirements.txt, runtime
