@@ -1,7 +1,6 @@
 # docuStore
 document storage django service
 the api server has 3 main apis which encompass all business logic.They are explained below.
-Code with unittest is in the test branch  as main branch contains credentials to hosted db.
 
 
 # uploadfile
